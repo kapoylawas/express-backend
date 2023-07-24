@@ -18,12 +18,12 @@ module.exports = {
                             email: checkUser.email
                         }
                     }, 'secret')
-                    res.status(200).json({message: 'Success Login', data: token})
+                    res.status(200).json({success: true, message: 'Success Login', data: token})
                 } else {
-                    res.status(403).json({message: 'Invalid password'});
+                    res.status(403).json({success: false, message: 'Invalid password'});
                 }
             } else {
-                res.status(403).json({message: 'Invalid Username'});
+                res.status(403).json({success: false, message: 'Invalid Username and password'});
             }
         } catch (err) {
             console.log(err);
