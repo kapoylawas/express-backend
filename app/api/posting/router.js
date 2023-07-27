@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {auth} = require('../../middlewares/auth')
+const {auth} = require('../../middlewares/auth');
+const controller = require('./controller');
 
-
-router.get('/posting', auth, function (req, res) {
-    res.status(200).json({message: 'Router posting'});
-});
+router.get('/posting', auth, controller.getAllPosting);
+router.post('/posting', auth, controller.createPost);
 
 module.exports = router;
