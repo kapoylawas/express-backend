@@ -16,6 +16,9 @@ expressjs dan orm database sequelize</p><h2>General Information</h2>
 </ul><ul>
 <li>http://localhost:3000/api/v1/posting?keyword=Testing (getall and ge by keyword)</li>
 </ul><ul>
+</ul><ul>
+<li>http://localhost:3000/api/v1/posting?page=1&pageSize=5 (getall pagination)</li>
+</ul><ul>
 <li>http://localhost:3000/api/v1/posting (post)</li>
 </ul><ul>
 <li>http://localhost:3000/api/v1/uploads (post)</li>

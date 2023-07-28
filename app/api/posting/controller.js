@@ -5,6 +5,11 @@ module.exports = {
   getAllPosting: async (req, res, next) => {
     try {
       const { keyword = "" } = req.query;
+      const { page = 1, pageSize = 5 } = req.query
+
+     const offset = (page - 1) * pageSize;
+     const totalCount = await Post.count();
+     const totalPages = Math.ceil(totalCount / pageSize);
 
       let condition = {
         user: req.user.id,
@@ -15,6 +20,8 @@ module.exports = {
       }
 
       const postings = await Post.findAll({
+        offset,
+        limit: Number(pageSize),
         where: condition,
         include: {
           model: User,
@@ -25,6 +32,9 @@ module.exports = {
       res.status(200).json({
         message: "Success getl all posting",
         data: postings,
+        currentPage: Number(page),
+        totalPages,
+        totalItems: totalCount,
       });
     } catch (err) {
       next(err);
